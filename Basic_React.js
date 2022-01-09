@@ -55,38 +55,73 @@ const element = React.createElement(React.Fragment, {
    );
    */
    
-  
-  // Syntax JSX
-  // const element = (
-      //     <ul>
-      //         <li>Apple</li>
-      //         <li>Orange</li>
-      //         <li>Grape</li>
-      //     </ul>
-      // );
+  /* Syntax JSX */
+    /*
+      const element = (
+          <ul>
+              <li>Apple</li>
+              <li>Orange</li>
+              <li>Grape</li>
+          </ul>
+      );
 
-      // function up(text) {
-      //     return text.toUpperCase();
-      // }
+      function up(text) {
+          return text.toUpperCase();
+      }
 
-      // const name = 'Frans Sebastian';
-      // const element = <h1>Hello My Name is {up(name)}</h1>
-      // const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
-      // const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
-      // const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
+      const name = 'Frans Sebastian';
+      const element = <h1>Hello My Name is {up(name)}</h1>
+      const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
+      const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
+      const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
     const uTest = document.querySelector('#uTest');
     
     const className = 'heading-1';
+    function halo(name) {
+        return <p>Halo <b>{name}</b></p>
+    }
 
     const element = (
         <>
-            <p>Halo <b>Stefanus</b></p>
-            <p>Halo <b>Frans</b></p>
-            <p>Halo <b>Sebastian</b></p>
+            {halo('Dody Mulyanto')}
+            {halo('Frans Sebastian')}
+            {halo('Garin Girih')}
         </>
     );
+*/
+
+/* React Component */
+   /*  
+       function Halo(props) {
+           return <p>Halo nama saya <b>{props.name}</b></p>
+       }
+   
+       const element = (
+           <>
+               <Halo name="Frans Sebastian" />
+               <Halo name="Karina Nabila" />
+               <Halo name="Dodti Mulyanto" />
+           </>
+       );
+   */
+
+const uTest = document.querySelector('#uTest');
+
+        /* React Render in DOM */
+    function tick() {
+            const element =  (
+                <div>
+                    <h1>Jam Sekarang</h1>
+                    <h2>{new Date().toLocaleTimeString()}</h2>
+                </div>
+            );
+    
+        ReactDOM.render(element, uTest);
+    }
+
+    tick();
+    setInterval(function () {
+        tick();
+    }, 1000);
 
 
-
-
-ReactDOM.render(element, uTest);
