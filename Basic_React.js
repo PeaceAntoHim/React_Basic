@@ -73,12 +73,18 @@ const element = React.createElement(React.Fragment, {
       // const element = <h1>Hello My Name is {up(name)}</h1>
       // const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
       // const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
+      // const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
     const uTest = document.querySelector('#uTest');
     
     const className = 'heading-1';
 
-
-    const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
+    const element = (
+        <>
+            <p>Halo <b>Stefanus</b></p>
+            <p>Halo <b>Frans</b></p>
+            <p>Halo <b>Sebastian</b></p>
+        </>
+    );
 
 
 
