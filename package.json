@@ -1,0 +1,16 @@
+{
+  "name": "Learn_React",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/PeaceAntoHim/React_Basic.git",
+  "author": "PeaceAntoHim <stefanusfranssebastian@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-react": "^7.16.7"
+  },
+  "scripts": {
+    "build": "babel src --out-dir public"
+  }
+}
