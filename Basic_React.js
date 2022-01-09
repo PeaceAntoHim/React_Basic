@@ -38,21 +38,32 @@ const element = React.createElement(React.Fragment, {
     });
     */
    
+   /** Rule Of React Syntax
+    * 1. Parameter pertama digunakan untuk Tag name
+    * 2. Parameter Kedua digunakan untuk Props(property/ children)
+    * 3 .Parameter selsnjutnya digunakan untuk children 
+    */
+
+   /** Syntax react lama
+   const element = React.createElement(
+       'ul',
+       { className: 'list' },
+       React.createElement('li', null, 'Apple'),
+       React.createElement('li', null, 'Orange'),
+       React.createElement('li', null, 'Grape'),
+       
+   );
+   */
    
 const uTest = document.querySelector('#uTest');
 
-/** Rule Of React Syntax
- * 1. Parameter pertama digunakan untuk Tag name
- * 2. Parameter Kedua digunakan untuk Props(property/ children)
- * 3 .Parameter selsnjutnya digunakan untuk children 
- */
-const element = React.createElement(
-    'ul',
-    { className: 'list' },
-    React.createElement('li', null, 'Apple'),
-    React.createElement('li', null, 'Orange'),
-    React.createElement('li', null, 'Grape'),
-    
-);
+    // Syntax JSX
+    const element = (
+        <ul>
+            <li>Apple</li>
+            <li>Orange</li>
+            <li>Grape</li>
+        </ul>
+    );
 
 ReactDOM.render(element, uTest);
