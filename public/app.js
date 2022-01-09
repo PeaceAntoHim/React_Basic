@@ -71,7 +71,57 @@ const element = React.createElement(
 // const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
 // const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
 // const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
+//   const className = 'heading-1';
+//   const element = (
+//       <>
+//           <p>Halo <b>Stefanus</b></p>
+//           <p>Halo <b>Frans</b></p>
+//           <p>Halo <b>Sebastian</b></p>
+//       </>
+//   );
+
+/* Set Environment */
+
+/*  
+  console.log('otomatis di prosessdsadfsfd');
+  function thick() {
+    const element = (
+        <div>
+            <h1>Jam Sekarang</h1>
+            {new Date().toLocaleTimeString()}
+        </div>
+    );
+    ReactDOM.render(element, uTest);
+}
+thick();
+setInterval(function() {
+thick();
+}, 1000);
+*/
+
+/* Cara Nulis Inline Style di object untuk library reacr  */
+
+/*     
+const element = (
+    <div 
+    style={{
+        width: 200,
+        height: 200,
+        backgroundColor: 'blue',
+    }}></div>
+
+    );
+
+    const className = 'box';
+    const element = <div className={className}></div>
+*/
 const uTest = document.querySelector('#uTest');
-const className = 'heading-1';
-const element = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, "Halo ", /*#__PURE__*/React.createElement("b", null, "Stefanus")), /*#__PURE__*/React.createElement("p", null, "Halo ", /*#__PURE__*/React.createElement("b", null, "Frans")), /*#__PURE__*/React.createElement("p", null, "Halo ", /*#__PURE__*/React.createElement("b", null, "Sebastian")));
+
+function padaSaatAkuDiklik(msg) {
+  alert(msg);
+}
+
+const element = /*#__PURE__*/React.createElement("button", {
+  onClick: padaSaatAkuDiklik.bind(this, 'Hello, aku di klik')
+}, "Click me");
 ReactDOM.render(element, uTest);

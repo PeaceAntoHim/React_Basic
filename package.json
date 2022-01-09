@@ -8,9 +8,12 @@
   "dependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
-    "@babel/preset-react": "^7.16.7"
+    "@babel/preset-react": "^7.16.7",
+    "lite-server": "^2.6.1"
   },
   "scripts": {
-    "build": "babel src --out-dir public"
+    "build": "babel src --out-dir public -w",
+    "serve": "lite-server --baseDir public",
+    "start": "yarn build & yarn serve"
   }
 }
