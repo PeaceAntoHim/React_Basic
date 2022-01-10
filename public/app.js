@@ -184,32 +184,97 @@ function App() {
         </>
     );
 } */
-const uTest = document.querySelector('#uTest');
+
 /* Ccomponent lifecycle(effect hooks) */
 
-function App() {
-  const [diklik, setDiklik] = React.useState(false);
-  const [count, setCount] = React.useState(0);
-  React.useEffect(function () {
-    console.log('exec');
-    const carousel = new Slick();
-    return function () {
-      console.log('destroy carousel');
-      carousel.destroy();
-    };
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
-    id: "judul"
-  }, "Hello world"), /*#__PURE__*/React.createElement("button", {
-    onClick: function () {
-      setDiklik(true);
-    }
-  }, "Klik aku dong"), /*#__PURE__*/React.createElement("button", {
-    onClick: function () {
-      setCount(count + 1);
-    }
-  }, "Tambah"), "Nilai saat ini: ", count);
-}
+/* function App() {
+    const [diklik, setDiklik] = React.useState(false);
+    const [count, setCount] = React.useState(0);
 
+    React.useEffect(function () {
+        console.log('init carousel');
+
+        // const carousel = new Slick;
+
+        return function () { 
+            console.log('destroy carousel');
+            // carousel.destroy();
+        };
+    });
+
+    return (
+        <>
+            <h1 id="judul">Hello world</h1>
+            <button
+                onClick={function() {
+                    setDiklik(true);
+                }}>
+                Klik aku dong
+            </button>
+            <button
+                onClick={function() {
+                    setCount(count + 1);
+                }}>
+                Tambah
+            </button>
+            Nilai saat ini: {count}
+        </>
+    ); 
+    console.log(document.getElementById('judul'));
+} */
+
+/* first conditonal rendering */
+
+/*  if(login) {
+    return (
+        <>
+        <h1>Udah, Dulu Bang</h1>
+        <button onClick={function () {
+            setLogin(false);
+        }}>
+        Logout
+        </button>
+        </>
+        );
+    } */
+
+/* Lern Conditional rendering */
+{
+  /* Conditional Jsx rendering part 1 */
+}
+{
+  /* <p>{login ? <b>Kamu sudah login</b> : <i>Kamu belum login</i>}</p> */
+}
+{
+  /* Condiotpnal JSX rendering part 2 */
+}
+{
+  /*    <p>{login === true && <b>Kamu Sudah Login</b>}</p>
+  <button
+  onClick={function () {
+     setLogin(true);
+  }}>
+  login
+  </button>*/
+}
+/* DOM Manipulation */
+
+/* function App() {
+        const [login, setLogin] = React.useState(false);
+        const judulRef = React.useRef(null);
+
+    React.useEffect(function() {
+        setTimeout(function() {
+            judulRef.current.textContent = 'Aplikasi';
+        }, 1000);
+    }, []);
+    
+    return (
+        <>
+            <h1 ref={judulRef}>Applications</h1>
+        </>
+    );
+} */
+
+const uTest = document.querySelector('#uTest');
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), uTest);
-console.log(document.getElementById('judul'));
