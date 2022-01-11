@@ -90,19 +90,21 @@ const element = React.createElement(
 /* Set Environment */
 
 /*  
-  console.log('otomatis di prosessdsadfsfd');
-  function thick() {
-    const element = (
-        <div>
-            <h1>Jam Sekarang</h1>
-            {new Date().toLocaleTimeString()}
-        </div>
-    );
-    ReactDOM.render(element, uTest);
-}
+      console.log('otomatis di prosessdsadfsfd');
+
+    function thick() {
+        const element = (
+            <div>
+                <h1>Jam Sekarang</h1>
+                {new Date().toLocaleTimeString()}
+            </div>
+        );
+        ReactDOM.render(element, uTest);
+    }
+
 thick();
 setInterval(function() {
-thick();
+    thick();
 }, 1000);
 */
 
@@ -137,28 +139,30 @@ const element = (
 /* State Hooks Before Distructuring */
 
 /* function App() {
-    const state = React.useState(0);
-         const count = state[0];
-    const updateCount = state[1];
-     console.log(updateCount);
-         return (
-        <>
-        <button
-            onClick={function() {
-                updateCount(count - 1);
-            }}>
-            -
-        </button>
-        <span>{count}</span>
-        <button
-            onClick={function () {
-                updateCount(count + 1);
-            }}>
-            +
-        </button>
-        </>
-    );
-} */
+           const state = React.useState(0);
+   
+           const count = state[0];
+           const updateCount = state[1];
+            console.log(updateCount);
+   
+           return (
+               <>
+               <button
+                   onClick={function() {
+                       updateCount(count - 1);
+                   }}>
+                   -
+               </button>
+               <span>{count}</span>
+               <button
+                   onClick={function () {
+                       updateCount(count + 1);
+                   }}>
+                   +
+               </button>
+               </>
+           );
+       } */
 
 /* State Hooks After Distructuring */
 
@@ -250,12 +254,12 @@ function App() {
 }
 {
   /*    <p>{login === true && <b>Kamu Sudah Login</b>}</p>
-  <button
-  onClick={function () {
-     setLogin(true);
-  }}>
-  login
-  </button>*/
+          <button
+          onClick={function () {
+              setLogin(true);
+          }}>
+          login
+      </button>*/
 }
 /* DOM Manipulation */
 
@@ -277,4 +281,86 @@ function App() {
 } */
 
 const uTest = document.querySelector('#uTest');
+/* React list & keys */
+
+/* const fruits = ['Apple', 'Grape', 'Banana', 'Orange', 'strawberry'];
+    <ul>
+        {fruits.map(function(fruit) {
+            return <li key={fruit}>{fruit}</li>;    
+        })}
+    </ul> */
+
+/* Modify Forms with React */
+
+/* const namaRef = React.useRef(null); */
+
+/* const nama = namaRef.current.value;
+
+console.log('Nama:', nama) */
+
+/*       const [nama, setNama] = React.useState('Frans');
+      
+
+  function ketikaSubmit(event) {
+      event.preventDefault();
+
+      console.log('Nama: ', nama);
+  }
+
+  return (
+      <form onSubmit={ketikaSubmit}>
+          <div>
+              <lable>Nama: </lable>
+              <input 
+                  type="text" 
+                  name="nama"
+                  value={nama}
+                  onChange={function(event) {
+                      setNama(event.target.value);
+                  }}
+              />
+          </div>
+          <button type="submit">Kirim</button>
+      </form>
+  ); */
+
+/* Data fetching (HTTP client request) */
+// First
+
+/*  React.useEffect(function () {
+            const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response);
+                });
+            console.log(getData);
+        },
+        []); */
+
+function App() {
+  // Seacond cara fectch data menggunakan function dalam function 
+  const [news, setNews] = React.useState([]);
+  const [loading, setLoading] = React.useState([true]);
+  React.useEffect(function () {
+    async function getData() {
+      const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs'); // console.log(request);
+
+      const response = await request.json(); // console.log(response);
+
+      setNews(response);
+      setLoading(false);
+    }
+
+    getData();
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, " ", /*#__PURE__*/React.createElement("h1", null, " Data Fetch "), "   ", loading && /*#__PURE__*/React.createElement("i", null, " loading data... "), "  : ( ", /*#__PURE__*/React.createElement("ul", null, " ", news.map(function (item) {
+    // console.log(item);
+    return /*#__PURE__*/React.createElement("li", {
+      key: item.id
+    }, " ", item.title, " ");
+  }), " "), ") } ");
+}
+
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), uTest);

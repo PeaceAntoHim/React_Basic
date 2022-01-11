@@ -30,7 +30,7 @@ const element = React.createElement(React.Fragment, {
         children: 'Grape', 
     });
 */
-   
+
 /** Cara Pertama Rendering React
  * 
  const element = React.createElement('ul', {
@@ -38,65 +38,65 @@ const element = React.createElement(React.Fragment, {
     });
     */
 
-   
-   /** Rule Of React Syntax
-    * 1. Parameter pertama digunakan untuk Tag name
-    * 2. Parameter Kedua digunakan untuk Props(property/ children)
-    * 3 .Parameter selsnjutnya digunakan untuk children 
-    */
+
+/** Rule Of React Syntax
+ * 1. Parameter pertama digunakan untuk Tag name
+ * 2. Parameter Kedua digunakan untuk Props(property/ children)
+ * 3 .Parameter selsnjutnya digunakan untuk children 
+ */
 
 
 
-   /** Syntax react lama
-   const element = React.createElement(
-       'ul',
-       { className: 'list' },
-       React.createElement('li', null, 'Apple'),
-       React.createElement('li', null, 'Orange'),
-       React.createElement('li', null, 'Grape'),
-       
-   );
-   */
-
-
-
-   
- /*  
-  Syntax JSX
-  const element = (
-          <ul>
-              <li>Apple</li>
-              <li>Orange</li>
-              <li>Grape</li>
-          </ul>
-      );
-
-      function up(text) {
-          return text.toUpperCase();
-      }
-
-      const name = 'Frans Sebastian';
-      const element = <h1>Hello My Name is {up(name)}</h1>
-      const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
-      const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
-      const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
-      
-      
-        const className = 'heading-1';
+/** Syntax react lama
+const element = React.createElement(
+    'ul',
+    { className: 'list' },
+    React.createElement('li', null, 'Apple'),
+    React.createElement('li', null, 'Orange'),
+    React.createElement('li', null, 'Grape'),
     
-        const element = (
-            <>
-                <p>Halo <b>Stefanus</b></p>
-                <p>Halo <b>Frans</b></p>
-                <p>Halo <b>Sebastian</b></p>
-            </>
-        ); */
+);
+*/
 
 
 
-    /* Set Environment */
 
-    /*  
+/*  
+ Syntax JSX
+ const element = (
+         <ul>
+             <li>Apple</li>
+             <li>Orange</li>
+             <li>Grape</li>
+         </ul>
+     );
+
+     function up(text) {
+         return text.toUpperCase();
+     }
+
+     const name = 'Frans Sebastian';
+     const element = <h1>Hello My Name is {up(name)}</h1>
+     const element = <h1>Hello my {new Date().toLocaleDateString()}</h1>;
+     const element = <h1 className="heading-1">Hello my name Frans sebastian</h1>
+     const element = <img src="https://statics.indozone.news/local/6119f8621f77e.jpg"/>
+     
+     
+       const className = 'heading-1';
+   
+       const element = (
+           <>
+               <p>Halo <b>Stefanus</b></p>
+               <p>Halo <b>Frans</b></p>
+               <p>Halo <b>Sebastian</b></p>
+           </>
+       ); */
+
+
+
+/* Set Environment */
+
+/*  
       console.log('otomatis di prosessdsadfsfd');
 
     function thick() {
@@ -143,8 +143,8 @@ const element = (
 
 
 
-   /* State Hooks Before Distructuring */
-       /* function App() {
+/* State Hooks Before Distructuring */
+/* function App() {
            const state = React.useState(0);
    
            const count = state[0];
@@ -171,7 +171,7 @@ const element = (
        } */
 
 
-       /* State Hooks After Distructuring */
+/* State Hooks After Distructuring */
 /* 
 function App() {
     const [count, setCount] = React.useState(0);
@@ -246,39 +246,141 @@ function App() {
         </>
         );
     } */
-    
-    /* Lern Conditional rendering */
-    {/* Conditional Jsx rendering part 1 */}
-        {/* <p>{login ? <b>Kamu sudah login</b> : <i>Kamu belum login</i>}</p> */}
-        {/* Condiotpnal JSX rendering part 2 */}
-        {/*    <p>{login === true && <b>Kamu Sudah Login</b>}</p>
-        <button
-        onClick={function () {
-            setLogin(true);
-        }}>
-        login
-    </button>*/}
-    
-    /* DOM Manipulation */
-    /* function App() {
-            const [login, setLogin] = React.useState(false);
-            const judulRef = React.useRef(null);
-    
-        React.useEffect(function() {
-            setTimeout(function() {
-                judulRef.current.textContent = 'Aplikasi';
-            }, 1000);
-        }, []);
-        
-        return (
-            <>
-                <h1 ref={judulRef}>Applications</h1>
-            </>
-        );
-    } */
-    
-    
-const uTest = document.querySelector('#uTest');  
-    
 
-ReactDOM.render(<App />, uTest);
+/* Lern Conditional rendering */
+{
+    /* Conditional Jsx rendering part 1 */
+} {
+    /* <p>{login ? <b>Kamu sudah login</b> : <i>Kamu belum login</i>}</p> */
+} {
+    /* Condiotpnal JSX rendering part 2 */
+} {
+    /*    <p>{login === true && <b>Kamu Sudah Login</b>}</p>
+            <button
+            onClick={function () {
+                setLogin(true);
+            }}>
+            login
+        </button>*/
+}
+
+/* DOM Manipulation */
+/* function App() {
+        const [login, setLogin] = React.useState(false);
+        const judulRef = React.useRef(null);
+
+    React.useEffect(function() {
+        setTimeout(function() {
+            judulRef.current.textContent = 'Aplikasi';
+        }, 1000);
+    }, []);
+    
+    return (
+        <>
+            <h1 ref={judulRef}>Applications</h1>
+        </>
+    );
+} */
+
+
+const uTest = document.querySelector('#uTest');
+/* React list & keys */
+/* const fruits = ['Apple', 'Grape', 'Banana', 'Orange', 'strawberry'];
+    <ul>
+        {fruits.map(function(fruit) {
+            return <li key={fruit}>{fruit}</li>;    
+        })}
+    </ul> */
+
+
+/* Modify Forms with React */
+/* const namaRef = React.useRef(null); */
+
+/* const nama = namaRef.current.value;
+
+console.log('Nama:', nama) */
+/*       const [nama, setNama] = React.useState('Frans');
+      
+
+  function ketikaSubmit(event) {
+      event.preventDefault();
+
+      console.log('Nama: ', nama);
+  }
+
+  return (
+      <form onSubmit={ketikaSubmit}>
+          <div>
+              <lable>Nama: </lable>
+              <input 
+                  type="text" 
+                  name="nama"
+                  value={nama}
+                  onChange={function(event) {
+                      setNama(event.target.value);
+                  }}
+              />
+          </div>
+          <button type="submit">Kirim</button>
+      </form>
+  ); */
+
+/* Data fetching (HTTP client request) */
+// First
+
+/*  React.useEffect(function () {
+            const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response);
+                });
+            console.log(getData);
+        },
+        []); */
+
+
+
+
+function App() {
+    /*     // Seacond cara fectch data menggunakan function dalam function 
+        const [news, setNews] = React.useState([]);
+        const [loading, setLoading] = React.useState([true]);
+
+        React.useEffect(function () {
+            async function getData() {
+                const request = await fetch(
+                    'https://api.spaceflightnewsapi.net/v3/blogs'
+                );
+                console.log(request);
+                const response = await request.json();
+
+                console.log(response);
+                setNews(response);
+                setLoading(false);
+            }
+            getData();
+        }, []);
+
+
+        return ( < > < h1 > Data Fetch < /h1>   {
+            loading && < i > loading data... < /i>}  : ( <
+            ul > {
+                news.map(function (item) {
+                    // console.log(item);
+                    return <li key = {
+                        item.id
+                    } > {
+                        item.title
+                    } < /li>
+
+                })
+            } <
+            /ul> 
+        )
+    } < / >);
+
+    } */
+
+    ReactDOM.render( < App / > , uTest);
