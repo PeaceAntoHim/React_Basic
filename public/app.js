@@ -399,9 +399,10 @@ function App() {
       return setMessage('Nama aktifitas jangan kosong!');
     }
 
+    setMessage(''); // Logic
+
     if (edit.id) {
-      const updatedTodo = {
-        id: edit.id,
+      const updatedTodo = { ...edit,
         activity
       };
       const editTodoIndex = todos.findIndex(function (todo) {
@@ -411,14 +412,17 @@ function App() {
       updatedTodos[editTodoIndex] = updatedTodo;
       setTodos(updatedTodos);
       return cancleEditHandler();
-    }
+    } // setting
+
 
     setTodos([...todos, {
       id: genereateId(),
-      activity
+      activity,
+      done: false
     }]);
     setActivity('');
-  }
+  } // Fungsi hapus
+
 
   function removeTodoHandler(todoId) {
     const filteredTodos = todos.filter(function (todo) {
@@ -426,17 +430,35 @@ function App() {
     });
     setTodos(filteredTodos);
     if (edit.id) cancleEditHandler();
-  }
+  } // Fungso edit
+
 
   function editTodoHandler(todo) {
     setActivity(todo.activity);
     setEdit(todo);
-  }
+  } // Fungsi batal
+
 
   function cancleEditHandler(todo) {
-    setEdit([]);
+    setEdit({});
     setActivity([]);
+  } // Fungsi ceklist
+
+
+  function doneTodoHandler(todo) {
+    const updatedTodo = { ...todo,
+      done: todo.done ? false : true
+    };
+    const editTodoIndex = todos.findIndex(function (currentTodo) {
+      return currentTodo.id == todo.id;
+    });
+    const updatedTodos = [...todos];
+    updatedTodos[editTodoIndex] = updatedTodo; // console.log(updatedTodos);
+
+    setTodos(updatedTodos);
   }
+  /* Eksekusi Aplikasii */
+
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Simple todo list"), message && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -455,15 +477,19 @@ function App() {
     type: "submit"
   }, edit.id ? 'Simpan perubahan' : 'Tambah'), edit.id && /*#__PURE__*/React.createElement("button", {
     onClick: cancleEditHandler
-  }, "Batal Edit")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
+  }, "Batal Edit")), todos.length > 0 ? /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
-    }, todo.activity, /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "checkbox",
+      checked: todo.done,
+      onChange: doneTodoHandler.bind(this, todo)
+    }), todo.activity, "(", todo.done ? 'Selesai' : 'Belum Selesai', ")", /*#__PURE__*/React.createElement("button", {
       onClick: editTodoHandler.bind(this, todo)
     }, "edit"), /*#__PURE__*/React.createElement("button", {
       onClick: removeTodoHandler.bind(this, todo.id)
     }, "hapus"));
-  })));
+  })) : /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, "Tidak ada to do")));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), uTest);
