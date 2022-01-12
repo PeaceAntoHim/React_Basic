@@ -342,45 +342,152 @@ console.log('Nama:', nama) */
 
 
 
-
-function App() {
-    /*     // Seacond cara fectch data menggunakan function dalam function 
-        const [news, setNews] = React.useState([]);
-        const [loading, setLoading] = React.useState([true]);
-
-        React.useEffect(function () {
-            async function getData() {
-                const request = await fetch(
-                    'https://api.spaceflightnewsapi.net/v3/blogs'
-                );
-                console.log(request);
-                const response = await request.json();
-
-                console.log(response);
-                setNews(response);
-                setLoading(false);
-            }
-            getData();
-        }, []);
-
-
-        return ( < > < h1 > Data Fetch < /h1>   {
-            loading && < i > loading data... < /i>}  : ( <
-            ul > {
-                news.map(function (item) {
-                    // console.log(item);
-                    return <li key = {
-                        item.id
-                    } > {
-                        item.title
-                    } < /li>
-
-                })
-            } <
-            /ul> 
-        )
-    } < / >);
-
+/*     // Seacond cara fectch data menggunakan function dalam function 
+            const [news, setNews] = React.useState([]);
+            const [loading, setLoading] = React.useState([true]);
+    
+            React.useEffect(function () {
+                async function getData() {
+                    const request = await fetch(
+                        'https://api.spaceflightnewsapi.net/v3/blogs'
+                    );
+                    console.log(request);
+                    const response = await request.json();
+    
+                    console.log(response);
+                    setNews(response);
+                    setLoading(false);
+                }
+                getData();
+            }, []);
+    
+    
+            return ( < > < h1 > Data Fetch < /h1>   {
+                loading && < i > loading data... < /i>}  : ( <
+                ul > {
+                    news.map(function (item) {
+                        // console.log(item);
+                        return <li key = {
+                            item.id
+                        } > {
+                            item.title
+                        } < /li>
+    
+                    })
+                } <
+                /ul> 
+            )
+        } < / >);
     } */
 
-    ReactDOM.render( < App / > , uTest);
+
+
+
+
+
+
+
+
+                                /* Capter 4 */
+
+        /* Study case use state and lisst it's Simple Todo list */
+
+function App() {
+    // Bagian pengumpulan data
+    const [activity, setActivity] = React.useState('');
+    const [edit, setEdit] =React.useState({});
+    const [todos, setTodos] = React.useState([]);
+    const [message, setMessage] = React.useState('');
+
+
+    function genereateId() {
+        return Date.now();
+    }
+
+    function saveTodoHandler(event) {
+        event.preventDefault();
+
+        if(!activity) {
+            return setMessage('Nama aktifitas jangan kosong!')
+        }
+
+        if(edit.id) {
+            const updatedTodo ={
+                id: edit.id,
+                activity,
+            }
+            const editTodoIndex = todos.findIndex(function(todo) {
+                return todo.id === edit.id;
+            });
+
+            const updatedTodos = [...todos];
+            updatedTodos[editTodoIndex] = updatedTodo; 
+            
+            setTodos(updatedTodos);
+
+            return cancleEditHandler();
+        }
+
+        setTodos([
+            ...todos, 
+            {
+                id: genereateId(),
+                activity,
+            },
+    ]);
+        setActivity('');
+    }
+
+
+    function removeTodoHandler(todoId) { 
+        const filteredTodos = todos.filter(function (todo) {
+            return todo.id !== todoId;
+        });
+        setTodos(filteredTodos);
+
+        if(edit.id)cancleEditHandler();
+    }
+
+    function editTodoHandler(todo) {
+        setActivity(todo.activity);
+        setEdit(todo);
+    }
+
+    function cancleEditHandler(todo) {
+        setEdit([]);
+        setActivity([]);
+    }
+
+
+    return ( 
+        <>
+        <h1>Simple todo list</h1>
+        {message && <div style={{color: 'red'}}>{message}</div>}
+        <form onSubmit = {saveTodoHandler}>
+            <input type = "text"
+            placeholder = "Nama aktifitas"
+            value={activity}
+            onChange = {function (event) {
+                    setActivity(event.target.value);
+                }}
+            /> 
+            <button type="submit">{edit.id ? 'Simpan perubahan' : 'Tambah'}</button>
+            {edit.id && <button onClick={cancleEditHandler}>Batal Edit</button>}
+            </form>
+            {}
+         <ul> 
+            {todos.map(function (todo) {
+                return ( 
+                <li key={todo.id}>
+                    {todo.activity}
+                <button onClick={editTodoHandler.bind(this, todo)}>edit</button>
+                <button onClick={removeTodoHandler.bind(this, todo.id)}>hapus</button>
+                </li>
+                );
+            })} 
+        </ul>
+        </>
+    );
+}
+
+ReactDOM.render( < App /> , uTest);

@@ -339,28 +339,131 @@ console.log('Nama:', nama) */
         },
         []); */
 
+/*     // Seacond cara fectch data menggunakan function dalam function 
+            const [news, setNews] = React.useState([]);
+            const [loading, setLoading] = React.useState([true]);
+    
+            React.useEffect(function () {
+                async function getData() {
+                    const request = await fetch(
+                        'https://api.spaceflightnewsapi.net/v3/blogs'
+                    );
+                    console.log(request);
+                    const response = await request.json();
+    
+                    console.log(response);
+                    setNews(response);
+                    setLoading(false);
+                }
+                getData();
+            }, []);
+    
+    
+            return ( < > < h1 > Data Fetch < /h1>   {
+                loading && < i > loading data... < /i>}  : ( <
+                ul > {
+                    news.map(function (item) {
+                        // console.log(item);
+                        return <li key = {
+                            item.id
+                        } > {
+                            item.title
+                        } < /li>
+    
+                    })
+                } <
+                /ul> 
+            )
+        } < / >);
+    } */
+
+/* Capter 4 */
+
+/* Study case use state and lisst it's Simple Todo list */
+
 function App() {
-  // Seacond cara fectch data menggunakan function dalam function 
-  const [news, setNews] = React.useState([]);
-  const [loading, setLoading] = React.useState([true]);
-  React.useEffect(function () {
-    async function getData() {
-      const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs'); // console.log(request);
+  // Bagian pengumpulan data
+  const [activity, setActivity] = React.useState('');
+  const [edit, setEdit] = React.useState({});
+  const [todos, setTodos] = React.useState([]);
+  const [message, setMessage] = React.useState('');
 
-      const response = await request.json(); // console.log(response);
+  function genereateId() {
+    return Date.now();
+  }
 
-      setNews(response);
-      setLoading(false);
+  function saveTodoHandler(event) {
+    event.preventDefault();
+
+    if (!activity) {
+      return setMessage('Nama aktifitas jangan kosong!');
     }
 
-    getData();
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, " ", /*#__PURE__*/React.createElement("h1", null, " Data Fetch "), "   ", loading && /*#__PURE__*/React.createElement("i", null, " loading data... "), "  : ( ", /*#__PURE__*/React.createElement("ul", null, " ", news.map(function (item) {
-    // console.log(item);
+    if (edit.id) {
+      const updatedTodo = {
+        id: edit.id,
+        activity
+      };
+      const editTodoIndex = todos.findIndex(function (todo) {
+        return todo.id === edit.id;
+      });
+      const updatedTodos = [...todos];
+      updatedTodos[editTodoIndex] = updatedTodo;
+      setTodos(updatedTodos);
+      return cancleEditHandler();
+    }
+
+    setTodos([...todos, {
+      id: genereateId(),
+      activity
+    }]);
+    setActivity('');
+  }
+
+  function removeTodoHandler(todoId) {
+    const filteredTodos = todos.filter(function (todo) {
+      return todo.id !== todoId;
+    });
+    setTodos(filteredTodos);
+    if (edit.id) cancleEditHandler();
+  }
+
+  function editTodoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
+
+  function cancleEditHandler(todo) {
+    setEdit([]);
+    setActivity([]);
+  }
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Simple todo list"), message && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: 'red'
+    }
+  }, message), /*#__PURE__*/React.createElement("form", {
+    onSubmit: saveTodoHandler
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Nama aktifitas",
+    value: activity,
+    onChange: function (event) {
+      setActivity(event.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, edit.id ? 'Simpan perubahan' : 'Tambah'), edit.id && /*#__PURE__*/React.createElement("button", {
+    onClick: cancleEditHandler
+  }, "Batal Edit")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
     return /*#__PURE__*/React.createElement("li", {
-      key: item.id
-    }, " ", item.title, " ");
-  }), " "), ") } ");
+      key: todo.id
+    }, todo.activity, /*#__PURE__*/React.createElement("button", {
+      onClick: editTodoHandler.bind(this, todo)
+    }, "edit"), /*#__PURE__*/React.createElement("button", {
+      onClick: removeTodoHandler.bind(this, todo.id)
+    }, "hapus"));
+  })));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), uTest);
